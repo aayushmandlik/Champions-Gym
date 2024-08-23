@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo2.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,22 +23,22 @@ const Navbar = () => {
         </div>
         <ul className={`nav__links ${menuOpen ? "open" : ""}`} id="nav-links">
           <li>
-            <a href="#home">HOME</a>
+            <a href="/#home">HOME</a>
           </li>
           <li>
-            <a href="#about">ABOUT</a>
+            <a href="/#about">ABOUT</a>
           </li>
           <li>
-            <a href="#trainer">TRAINER</a>
+            <a href="/#trainer">TRAINER</a>
           </li>
           <li>
-            <a href="#client">CLIENT</a>
+            <a href="/#client">CLIENT</a>
           </li>
           <li>
-            <a href="#blog">BLOG</a>
+            <a href="/#exercise">EXERCISES</a>
           </li>
           <li>
-            <a href="#contact">CONTACT US</a>
+            <a href="/#contact">CONTACT US</a>
           </li>
         </ul>
       </div>

@@ -24,7 +24,7 @@ const Testimonials = () => {
                 <i className="ri-double-quotes-r"></i>
               </div>
               <p>
-                I've been a member at FitPhysique for over a year now, and I
+                I've been a member at Champions Gym for over a year now, and I
                 couldn't be happier with my experience. The range of classes
                 offered here is impressive - from high-energy cardio sessions to
                 relaxing yoga classes, there's something for everyone.
@@ -55,8 +55,9 @@ const Testimonials = () => {
               </div>
               <p>
                 I've tried many gyms in the past, but none of them compare to
-                FitPhysique. From the moment I walked through the doors, I felt
-                welcomed and supported by the staff and fellow members alike.
+                Champions Gym. From the moment I walked through the doors, I
+                felt welcomed and supported by the staff and fellow members
+                alike.
               </p>
               <h4>Emily Davis</h4>
             </div>

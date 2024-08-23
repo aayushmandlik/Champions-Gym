@@ -17,6 +17,64 @@
   box-sizing: border-box;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: rgb(191, 187, 187);
+  color: white;
+}
+
+.pagination li.active {
+  background-color: #ff0000;
+}
+
+.pagination li.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Ensure the pagination root has a transparent background */
+.MuiPagination-root {
+  background-color: transparent !important;
+}
+
+/* Ensure the pagination items also have a transparent background */
+.MuiPaginationItem-root {
+  background-color: transparent !important;
+  color: #3a1212; /* Change the color of the page numbers */
+}
+
+/* If using the text variant, override as well */
+.MuiPagination-text {
+  background-color: transparent !important;
+}
+
+/* Ensure ellipsis background is transparent if present */
+.MuiPaginationItem-ellipsis {
+  background-color: transparent !important;
+}
+
+/* Highlight the selected page number */
+.Mui-selected {
+  background-color: #514e4e !important; /* Change the background color of the selected page number */
+  color: #fff !important; /* Change the color of the selected page number */
+}
+
 .section__container {
   max-width: var(--max-width);
   margin: auto;
@@ -153,7 +211,7 @@ nav {
       rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0.8)
     ),
-    url("assets/header.jpg");
+    url("assets/header2.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -161,7 +219,7 @@ nav {
 
 .header__container {
   padding-block: 10rem;
-  display: grid;
+  /* display: grid; */
 }
 
 .header__content h1 {
@@ -183,6 +241,7 @@ nav {
 
 .header__content p {
   margin-bottom: 2rem;
+  font-size: 1.3rem;
   color: var(--extra-light);
 }
 
@@ -355,6 +414,14 @@ nav {
   background-repeat: no-repeat;
 }
 
+.paydetailbg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("assets/membership.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .membership__container .section__header {
   color: var(--white);
 }
@@ -471,6 +538,141 @@ nav {
   background-color: var(--primary-color);
 }
 
+/* gym exercises */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.right-arrow,
+.left-arrow {
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff2625;
+  font-size: 25px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: -20px;
+  /* right: 80px; */
+  transform: scale(1, 1);
+  transition: 0.3s all ease-in-out;
+  background-color: white;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+.right-arrow:hover,
+.left-arrow:hover {
+  transform: scale(1.3, 1.3);
+}
+
+.react-horizontal-scrolling-menu--wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.detail-image {
+  width: 729px;
+  height: 742px;
+}
+
+.hero-banner-img {
+  position: absolute;
+  right: 40px;
+  top: 0px;
+  width: 600px;
+  height: 600px;
+  /* margin-top: -330px; */
+}
+
+.exercise-card {
+  width: 400px;
+  height: 445px;
+  background: #fff;
+  border-top: 4px solid #ff2625;
+  /* border-bottom-left-radius: 20px; */
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 10px;
+  transform: scale(1, 1);
+  transition: 0.3s all ease-in-out;
+}
+
+.exercise-card img {
+  height: 326px;
+}
+
+.bodyPart-card {
+  transform: scale(1, 1);
+  transition: 0.3s all ease-in-out;
+}
+
+.exercise-card:hover,
+.bodyPart-card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.search-btn:hover {
+  color: #ff2625 !important;
+  border: 1px solid #ff2625 !important;
+}
+
+.exercise-video {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 387px;
+  height: 381px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .detail-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .react-horizontal-scrolling-menu--scroll-container {
+    width: 500px;
+  }
+
+  /* .left-arrow,
+  .right-arrow {
+    position: static !important;
+  } */
+
+  .hero-banner-img {
+    display: none;
+  }
+
+  .exercise-card {
+    width: 320px;
+  }
+
+  .exercise-video {
+    width: 320px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .exercise-card {
+    width: 280px;
+  }
+}
+/* gym exercises end */
+
 .blog {
   background-color: var(--text-dark);
 }
@@ -521,6 +723,7 @@ nav {
 
 .footer {
   background-color: var(--text-dark);
+  margin-top: 100px;
 }
 
 .footer__container {
@@ -530,7 +733,7 @@ nav {
 
 .footer__logo img {
   margin-bottom: 1rem;
-  max-width: 120px;
+  max-width: 200px;
 }
 
 .footer__col p {
@@ -646,7 +849,7 @@ nav {
 
 @media (width > 768px) {
   nav {
-    position: static;
+    position: fixed;
     padding: 1.5rem 1rem;
   }
 
@@ -663,7 +866,7 @@ nav {
   }
 
   .nav__logo img {
-    max-width: 120px;
+    max-width: 150px;
   }
 
   .nav__menu__btn {
@@ -681,11 +884,12 @@ nav {
   }
 
   .header__container {
-    padding-block: 12rem;
+    padding-block: 17rem;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .header__content {
+    margin-top: 3rem;
     grid-column: 2/3;
   }
 
@@ -748,5 +952,75 @@ nav {
 
   .membership__card {
     padding: 2rem;
+  }
+}
+
+@media (width < 500px) {
+  .header {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.8)
+      ),
+      url("assets/header2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .header__content {
+    padding-top: 320px;
+  }
+  .header__content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--header-font);
+    line-height: 5rem;
+    color: var(--primary-color);
+  }
+  .header__content h2 {
+    margin-bottom: 0rem;
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: var(--header-font);
+    line-height: 3rem;
+    color: var(--white);
+  }
+
+  .header__content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--extra-light);
+  }
+  .right-arrow,
+  .left-arrow {
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff2625;
+    font-size: 25px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: -5%;
+    /* right: 80px; */
+    transform: scale(1, 1);
+    transition: 0.3s all ease-in-out;
+    background-color: white;
+    border-radius: 50%;
+    width: 24px; /* Reduce arrow size */
+    height: 24px; /* Reduce arrow size */
+  }
+
+  .right-arrow {
+    /* right: 20px; */
+  }
+
+  .right-arrow:hover,
+  .left-arrow:hover {
+    transform: scale(1.3, 1.3);
   }
 }

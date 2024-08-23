@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo2.png";
 import gallery1 from "../assets/gallery-1.jpg";
 import gallery2 from "../assets/gallery-2.jpg";
 import gallery3 from "../assets/gallery-3.jpg";
@@ -12,7 +12,7 @@ import gallery9 from "../assets/gallery-9.jpg";
 
 const Footer = () => {
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer" id="footer">
       <div className="section__container footer__container">
         <div className="footer__col">
           <div className="footer__logo">
@@ -21,7 +21,7 @@ const Footer = () => {
             </a>
           </div>
           <p>
-            Welcome to FitPhysique, where we believe that every journey to
+            Welcome to Champions Gym, where we believe that every journey to
             fitness is unique and empowering.
           </p>
           <ul className="footer__links">
@@ -48,7 +48,7 @@ const Footer = () => {
                 <span>
                   <i className="ri-mail-fill"></i>
                 </span>
-                info@fitphysique.com
+                info@Champions Gym.com
               </a>
             </li>
           </ul>

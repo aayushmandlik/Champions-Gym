@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import './Membership.css'; // Ensure you have appropriate styling
 
 const Membership = () => {
   return (
-    <section className="membership">
+    <section className="membership" id="membership">
       <div className="section__container membership__container">
         <h2 className="section__header">MEMBERSHIP</h2>
         <div className="membership__grid">
@@ -50,7 +51,14 @@ const Membership = () => {
             <h3>
               <sup>$</sup>30<span>/month</span>
             </h3>
-            <button className="btn btn__primary">BUY NOW</button>
+            <Link
+              to="paymentdetails"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <button className="btn btn__primary">BUY NOW</button>
+            </Link>
           </div>
           <div className="membership__card">
             <h4>PROFESSIONAL</h4>
@@ -95,7 +103,14 @@ const Membership = () => {
             <h3>
               <sup>$</sup>45<span>/month</span>
             </h3>
-            <button className="btn btn__primary">BUY NOW</button>
+            <Link
+              to="paymentdetails"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <button className="btn btn__primary">BUY NOW</button>
+            </Link>
           </div>
           <div className="membership__card">
             <h4>ULTIMATE</h4>
@@ -140,7 +155,14 @@ const Membership = () => {
             <h3>
               <sup>$</sup>60<span>/month</span>
             </h3>
-            <button className="btn btn__primary">BUY NOW</button>
+            <Link
+              to="paymentdetails"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <button className="btn btn__primary">BUY NOW</button>
+            </Link>
           </div>
         </div>
       </div>

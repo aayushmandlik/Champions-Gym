@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import About from "./components/About";
-import Sessions from "./components/Sessions";
-import Trainers from "./components/Trainers";
-import Membership from "./components/Membership";
-import ClientTestimonials from "./components/ClientTestimonials";
-import Blog from "./components/Blog";
 import Footer from "./components/Footer";
+import ExerciseDetail from "./pages/ExerciseDetail"; // Import the ExerciseDetail component
+import Home from "./pages/Home"; // Import the Home component
+import PaymentDetails from "./pages/PaymentDetails";
 import "./App.css";
 import ScrollReveal from "scrollreveal";
-import { useEffect } from "react";
+import { Box } from "@mui/material";
 
 const App = () => {
   useEffect(() => {
@@ -79,26 +76,23 @@ const App = () => {
     };
   }, []);
 
-  // const swiper = new Swiper(".swiper", {
-  //   loop: true,
-
-  //   pagination: {
-  //     el: ".swiper-pagination",
-  //   },
-  // });
-
   return (
-    <>
+    <Box width="400px" sx={{ width: { xl: "1488px" } }} m="auto">
       <Navbar />
-      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/paymentdetails" element={<PaymentDetails />} />
+        <Route path="/exercise/:id" element={<ExerciseDetail />} />
+      </Routes>
+      {/* <Header />
       <About />
       <Sessions />
       <Trainers />
       <Membership />
       <ClientTestimonials />
-      <Blog />
+      <Blog /> */}
       <Footer />
-    </>
+    </Box>
   );
 };
 
