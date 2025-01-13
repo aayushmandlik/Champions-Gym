@@ -1,15 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const crypto = require("crypto");
-const { Cashfree } = require("cashfree-pg");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const stripe = require("stripe")(
-  "sk_test_51Q4p9VBFFC2yIXFp260mSCZNAjldaZbe2wanWIvzj3aiJ0CES0s4tcdFPtqkcOxG1ASuTxCnbolVg7xLfFGqbP1700FrxcSL9w"
-);
 
 require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 app.use(cors());
@@ -28,15 +23,15 @@ app.post("/send-email", (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail", // You can use any other email service provider
     auth: {
-      user: "aayushmandu66@gmail.com", // Replace with your email
-      pass: "bgqp rvaz yjym awao", // Replace with your email password
+      user: process.env.AUTH_USER, // Replace with your email
+      pass: process.env.AUTH_PASS, // Replace with your email password
     },
   });
 
   // Email to the receiver
   const mailOptionsReceiver = {
     from: email,
-    to: "aayushmandu66@gmail.com", // Replace with receiver's email
+    to: process.env.AUTH_USER, // Replace with receiver's email
     subject: `New Contact from ${name}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px;">
@@ -70,7 +65,7 @@ app.post("/send-email", (req, res) => {
 
   // Email to the sender/user
   const mailOptionsUser = {
-    from: "aayushmandu66@gmail.com",
+    from: process.env.AUTH_USER,
     to: email, // The user's email
     subject: `Thank You, ${name}, for Contacting Us.`,
     html: `
@@ -124,21 +119,6 @@ app.post("/send-email", (req, res) => {
   });
 });
 
-Cashfree.XClientId = process.env.CLIENT_ID;
-Cashfree.XClientSecret = process.env.CLIENT_SECRET;
-Cashfree.XEnvironment = Cashfree.Environment.SANDBOX;
-
-function generateOrderId() {
-  const uniqueId = crypto.randomBytes(16).toString("hex");
-
-  const hash = crypto.createHash("sha256");
-  hash.update(uniqueId);
-
-  const orderId = hash.digest("hex");
-
-  return orderId.substr(0, 12);
-}
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -161,29 +141,29 @@ app.post("/payment", async (req, res) => {
     // Create a Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      customer_email: email, // Collecting email
+      customer_email: email,
       line_items: [
         {
           price_data: {
-            currency: "inr", // Use appropriate currency
+            currency: "inr",
             product_data: {
-              name: planName, // Plan name to show on checkout
+              name: planName,
               // Optional fields:
               // images: ["https://example.com/path-to-image.jpg"],
               // metadata: { planDuration: duration, customerPhone: phone },
             },
-            unit_amount: price * 100, // Convert price to cents
+            unit_amount: price * 100,
           },
           quantity: 1,
         },
       ],
-      mode: "payment", // Mode should be 'payment' for one-time payments
+      mode: "payment",
       success_url:
-        "http://localhost:3000/payment-success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:3000/payment-failure",
+        "https://champions-gym.vercel.app/payment-success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://champions-gym.vercel.app/payment-failure",
       metadata: {
-        name: name || "", // Include necessary metadata
-        email: email || "", // Include email explicitly
+        name: name || "",
+        email: email || "",
         phone: phone || "",
         planName: planName || "",
         duration: duration || "",
@@ -223,8 +203,8 @@ app.post("/verify-payment", async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: "aayushmandu66@gmail.com", // Replace with your email
-      pass: "bgqp rvaz yjym awao", // Replace with your email app password
+      user: process.env.AUTH_USER,
+      pass: process.env.AUTH_PASS,
     },
   });
 
@@ -260,7 +240,7 @@ app.post("/verify-payment", async (req, res) => {
       }
 
       const mailOptionsUsers = {
-        from: "aayushmandu66@gmail.com",
+        from: process.env.AUTH_USER,
         to: email,
         subject: `Thank You, ${name}, for Your Payment at Champions Gym`,
         html: `
@@ -322,8 +302,8 @@ app.post("/verify-payment", async (req, res) => {
       };
 
       const mailOptionsOwner = {
-        from: "aayushmandu66@gmail.com",
-        to: "aayushmandu66@gmail.com",
+        from: process.env.AUTH_USER,
+        to: process.env.AUTH_USER,
         subject: `Payment from ${name} of Rs${price}, for ${planName} for ${duration} at Champions Gym`,
         html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);">
