@@ -17,6 +17,9 @@ app.use(
 app.use(
   cors({
     origin: ["https://champions-gym.vercel.app"],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
   })
 );
 app.options("*", cors());
