@@ -19,6 +19,7 @@ app.use(
     origin: ["https://champions-gym.vercel.app"],
   })
 );
+app.options("*", cors());
 
 app.post("/send-email", (req, res) => {
   const { name, email, phone, message } = req.body;
