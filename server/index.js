@@ -14,14 +14,39 @@ app.use(
     extended: true,
   })
 );
-app.use(
-  cors({
-    origin: "https://champions-gym.vercel.app/paymentdetails",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://champions-gym.vercel.app",
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   })
+// );
+
+// Step 1: Enable CORS middleware globally
+app.use(cors());
+
+// Step 2: Add specific headers for all routes
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://champions-gym.vercel.app"
+  ); // Change "*" to your frontend URL in production
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+  );
+  next();
+});
+
+// Example route to test
+app.get("/", (req, res) => {
+  res.send("Hello, CORS is now configured!");
+});
+
 app.options("*", cors());
 
 app.post("/send-email", (req, res) => {
@@ -127,9 +152,9 @@ app.post("/send-email", (req, res) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 
 app.post("/payment", async (req, res) => {
   const {
