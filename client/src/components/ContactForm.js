@@ -148,13 +148,16 @@ const ContactForm = () => {
     setLoading(true);
 
     // Send form data to the backend
-    fetch("https://champions-gym-server.vercel.app/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      "https://champions-gym-server-rjxw175by-aayushmandliks-projects.vercel.app/send-email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((response) => {
         if (response.ok) {
           // Show success toast
