@@ -77,7 +77,7 @@ const PaymentDetails = () => {
 
     try {
       const response = await axios.post(
-        "https://champions-gym-server-rjxw175by-aayushmandliks-projects.vercel.app/payment",
+        "https://champions-gym-server.vercel.app/payment",
         formData
       );
       if (response.status === 200) {

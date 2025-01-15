@@ -26,12 +26,9 @@ const PaymentSuccess = () => {
 
     // Call the backend API to verify the payment
     axios
-      .post(
-        "https://champions-gym-server-rjxw175by-aayushmandliks-projects.vercel.app/verify-payment",
-        {
-          sessionId,
-        }
-      )
+      .post("https://champions-gym-server.vercel.app/verify-payment", {
+        sessionId,
+      })
       .then((response) => {
         console.log("Payment verified successfully:", response.data);
       })
