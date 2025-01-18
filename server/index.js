@@ -406,26 +406,27 @@ app.post("/verify-payment", async (req, res) => {
         </div>
       `,
       };
-
       transporter.sendMail(mailOptionsUsers, (error, info) => {
         if (error) {
-          console.error("Error sending email:", error);
-          processedPayments.delete(sessionId);
-        } else {
-          console.log("Email sents successfully:", info.response);
+          console.error("Error sending user email:", error);
+          return res.status(500).send("Error sending user email");
         }
-      });
 
-      transporter.sendMail(mailOptionsOwner, (error, info) => {
-        if (error) {
-          console.error("Error sending email:", error);
-          processedPayments.delete(sessionId);
-        } else {
-          console.log("Email sents successfully:", info.response);
-        }
-      });
+        console.log("User email sent successfully:", info.response);
 
-      return res.json({ status: "paid" });
+        transporter.sendMail(mailOptionsOwner, (error, info) => {
+          if (error) {
+            console.error("Error sending owner email:", error);
+            return res.status(500).send("Error sending owner email");
+          }
+
+          console.log("Owner email sent successfully:", info.response);
+
+          // Add session ID to processedPayments only after successful email sending
+          processedPayments.add(sessionId);
+          return res.json({ status: "paid" });
+        });
+      });
     } else {
       console.error("Payment status is not paid:", session.payment_status);
       return res.json({ status: "unpaid" });
