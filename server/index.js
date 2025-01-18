@@ -24,7 +24,14 @@ app.use(
 // );
 
 // Step 1: Enable CORS middleware globally
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://champions-gym.vercel.app",
+    credentials: true,
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type",
+  })
+);
 
 // Step 2: Add specific headers for all routes
 app.use((req, res, next) => {
